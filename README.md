@@ -1,5 +1,18 @@
 ﻿# Examen_Blanc_Systemes_Distribues
 
+## Etablir une architecture technique du projet Architecture CQRS :
+	
+ ![](https://i.imgur.com/VLLGS4v.png)
+
+## Architecture du système :  
+	
+![](https://i.imgur.com/cNb4IUC.png)
+
+	
+## Etablir un diagramme de classe global du projet 
+ 
+![](https://i.imgur.com/unw6DZj.png)
+
 ## Micro-service Radar
 
 >	Une entité "Radar" qui comporte les propriétés suivantes :
