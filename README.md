@@ -129,13 +129,62 @@
 
 ### keycloack Realm
 
+![image](https://user-images.githubusercontent.com/84138772/209480045-6eb7f6e6-1987-47bf-92c8-076a41af3a15.png)
+
+
 ### Config 
 
 ![image](https://user-images.githubusercontent.com/84138772/209479677-c3be77b1-833d-410b-8b82-995058ea33b3.png)
 
+#### KeycloakSecurityConfig
+
+```java
+
+@KeycloakConfiguration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
+    @Override
+    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(keycloakAuthenticationProvider());
+    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        super.configure(http);
+        http.csrf().disable().cors().and().headers().frameOptions().disable()
+                .and()
+                .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                .anyRequest().authenticated();
+    }
+}
+
+```
+
+#### KeycloakAdapterConfig
+
+```java
+@Configuration
+public class KeycloakAdapterConfig {
+    @Bean
+    public KeycloakSpringBootConfigResolver springBootConfigResolver(){
+        return new KeycloakSpringBootConfigResolver();
+    }
+
+}
+
+```
+
+### Redirection 
+
+![image](https://user-images.githubusercontent.com/84138772/209480319-b6df99a7-b0bf-4840-a786-77e33950d832.png)
 
 
+### Token 
 
+![image](https://user-images.githubusercontent.com/84138772/209480156-1ec62daf-1e51-4bf0-9d19-9a8dcd3f43e0.png)
 
 
 
